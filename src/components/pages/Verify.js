@@ -1,12 +1,11 @@
 import React from 'react';
-import '../../App.css';
 
 function Verify() {
   return(
     <div>
-      <h1 className='Verify'>
+      <p> 
         Verify Certificates
-      </h1>
+      </p>
     </div>
 
   );

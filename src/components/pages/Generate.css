@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=Poppins:wght@800&display=swap');
+
+:root {
+  --blue: #0379ff;
+  --light-blue: #9ac9ff;
+  --dark-blue: #0261cc;
+  --white: #fff;
+  --black: #101820;
+  --blackAlpha: #10182010;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin : 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+.Generate {
+  font-family: 'IBM Plex Sans';
+}
+
+header {
+  display: flex;
+  /* justify-content: center; */
+  padding-bottom: 0;
+}
+
+h1 {
+  font-family: 'Poppins';
+  color: var(--blue);
+  padding-left: 8.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  font-size: 2.5rem;
+  justify-content: left;
+}
+
+.g-container {
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 0%;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    width: 1024px;
+  }
+}
+
+section {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding-left: 8.5rem;
+}
+
+button {
+  font-size: 1.25rem;
+  background-color: var(--blue);
+  border-radius: 6px;
+  border: 0;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  color: var(--white);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+footer {
+  padding-top: 4rem;
+}
+
+.download {
+  background-color: var(--dark-blue);
+  color: white;
+  font-size: 1.25rem;
+  border-radius: 6px;
+  border: 0;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  margin-top: 2rem;
+  text-align: right;
+  text-decoration: none;
+}
