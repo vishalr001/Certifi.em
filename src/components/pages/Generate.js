@@ -2,13 +2,22 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
+import { create } from 'ipfs-http-client'
 import 'minireset.css';
 import './Generate.css';
-
 import Form from '../Form';
 import Preview from '../Preview'
 
+const ipfs = create({host: 'ipfs.infura.io', port: 5001, protocol: 'https'})
+
 function Generate() {
+
+
+
+
+  // Handling form data and specifying Post request to for certificate generation 
+
+
 
   const [formData, setFormData] = useState({
     name: '',
@@ -55,8 +64,39 @@ function Generate() {
     });
   }
 
+
+
+  // converting PDF file into buffer so we could add it in IPFS
+
+  const [buffer, setBuffer] = useState(null);
+  const [pdfHash, setPDFHash] = useState('');
+
+  function fileToBuffer(e){
+    e.preventDefault();
+    const file = e.target.files[0];
+    setBuffer(file)
+  }
+
+  async function uploadToIPFS(event) {
+    event.preventDefault();
+    console.log("uploading to ipfs");
+    try{
+      const added = await ipfs.add(buffer);
+      console.log(added.path);
+      const pdfHash = added.path;
+    }catch (error) {
+      console.log("error in uploading files...", error);
+    }
+  };
+
+
+
   return (
     <div className="App">
+
+
+      {/* Generate Certificate */}
+
       <div className="g-container">
         <header>
           <h1>Generate Certificate</h1>
@@ -86,6 +126,29 @@ function Generate() {
               </a>
             )}
           </div>
+        </section>
+      </div>
+
+
+
+      {/* Upload certificate to IPFS and ethereum and Sendf mail to recipient */}
+
+      <div>
+        <section>
+          <form>
+            <h1>Upload and Send Certificate</h1>
+            <div>
+              <label>Enter Downloaded Certificate</label>
+              <input type='file' onChange={fileToBuffer}></input>
+            </div>
+            <div>
+              <label>Enter Recipient Email</label>
+              <input type='email' placeholder='abc@gmail.com'></input>
+            </div>
+            <button type="button" onClick={uploadToIPFS}>
+              Send
+            </button>
+          </form>
         </section>
       </div>
     </div>
