@@ -77,6 +77,8 @@ function Generate() {
     setBuffer(file)
   }
 
+  // Upload PDF to ipfs and add certId and ipfs hash to firebase
+
   async function uploadToIPFS(event) {
     event.preventDefault();
     console.log("uploading to ipfs");
@@ -84,6 +86,7 @@ function Generate() {
       const added = await ipfs.add(buffer);
       console.log(added.path);
       const pdfHash = added.path;
+      setPDFHash(pdfHash);
     }catch (error) {
       console.log("error in uploading files...", error);
     }
@@ -131,7 +134,7 @@ function Generate() {
 
 
 
-      {/* Upload certificate to IPFS and ethereum and Sendf mail to recipient */}
+      {/* Upload certificate to IPFS and ethereum and Send mail to recipient */}
 
       <div>
         <section>
