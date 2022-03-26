@@ -35,13 +35,13 @@ function Verify() {
         <section>
           <form>
             <input
-              placeholder="Serach by Id"
+              placeholder="Enter Certificate ID"
               autoComplete="off"
               onChange={(event) => setSearchId(event.target.value)}
             ></input>
             <button type="button" onClick={getCertHash}>
               {" "}
-              Search{" "}
+              Verify{" "}
             </button>
           </form>
           {srcResult &&
