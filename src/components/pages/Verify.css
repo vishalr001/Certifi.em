@@ -1,13 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=Poppins:wght@800&display=swap');
-
-:root {
-  --blue: #0379ff;
-  --light-blue: #9ac9ff;
-  --dark-blue: #0261cc;
-  --white: #fff;
-  --black: #101820;
-  --blackAlpha: #10182010;
-}
 
 * {
   box-sizing: border-box;
@@ -23,19 +13,15 @@ body {
   font-size: 16px;
 }
 
-.Generate {
-  font-family: 'IBM Plex Sans';
-}
-
 header {
   display: flex;
   /* justify-content: center; */
   padding-bottom: 0;
 }
 
-h1 {
+h2 {
   font-family: 'Poppins';
-  color: var(--blue);
+  color: green;
   padding-left: 8.5rem;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
@@ -43,7 +29,7 @@ h1 {
   justify-content: left;
 }
 
-.g-container {
+.v-container {
   width: 100%;
   height: 100vh;
   margin: 0 auto;
