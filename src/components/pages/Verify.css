@@ -19,7 +19,17 @@ header {
   padding-bottom: 0;
 }
 
-h2 {
+.v-h1 {
+  font-family: 'Poppins';
+  color: var(--blue);
+  padding-left: 4rem;
+  padding-top: 2rem;
+  padding-bottom: 1.5rem;
+  font-size: 3rem;
+  justify-content: left;
+}
+
+.certified {
   font-family: 'Poppins';
   color: green;
   padding-left: 8.5rem;
@@ -46,7 +56,7 @@ section {
   width: 100%;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  padding-left: 8.5rem;
+  padding-left: 5rem;
 }
 
 button {

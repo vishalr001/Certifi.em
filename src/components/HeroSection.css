@@ -28,8 +28,9 @@ video {
 
 
 .hero-container > h2 {
+  font-family: "Poppins";
   color: #fff;
-  font-size: 90px;
+  font-size: 80px;
   margin-top: -100px;
 }
 
@@ -37,7 +38,6 @@ video {
   margin-top: 8px;
   color: #fff;
   font-size: 32px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-    'Lucida Sans', Arial, sans-serif;
+  font-family: 'Poppins';
 }
 

@@ -30,7 +30,7 @@ function Verify() {
   return (
     <div className="App">
       <div className="v-container">
-        <h1>Verify Certificates</h1>
+        <h1 className='v-h1'>Verify Certificates</h1>
 
         <section>
           <form>
@@ -46,7 +46,7 @@ function Verify() {
           </form>
           {srcResult &&
             <header>
-              <h2>Certified</h2>
+              <h2 class= 'certified'>Certified</h2>
             </header> 
           }
           {srcResult && (

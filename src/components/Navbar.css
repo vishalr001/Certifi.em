@@ -29,13 +29,12 @@
   align-items: center;
 }
 
-.navbar-brand:hover{
+/* .navbar-brand:hover{
   color: aquamarine;
-}
+} */
 
 .nav-item {
   margin-right: 10px;
-
 }
 
 .nav-links {

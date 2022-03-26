@@ -27,19 +27,22 @@ body {
   font-family: 'IBM Plex Sans';
 }
 
-header {
+.g-header {
   display: flex;
+  width: 100%;
   /* justify-content: center; */
   padding-bottom: 0;
+  padding-top: 10px
+  
 }
 
-h1 {
+.g-h1 {
   font-family: 'Poppins';
   color: var(--blue);
-  padding-left: 8.5rem;
-  padding-top: 1.5rem;
+  padding-left: 4rem;
+  padding-top: 2rem;
   padding-bottom: 1.5rem;
-  font-size: 2.5rem;
+  font-size: 3rem;
   justify-content: left;
 }
 
@@ -56,11 +59,11 @@ h1 {
   }
 }
 
-section {
-  width: 100%;
+.g-section {
+  width: 95%;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  padding-left: 8.5rem;
+  padding-left: 4rem;
 }
 
 button {
@@ -91,4 +94,82 @@ button:disabled {
   margin-top: 2rem;
   text-align: right;
   text-decoration: none;
+}
+
+
+.g1-container {
+  width: 100%;
+  height: 100vh;
+  margin-top: 4rem;
+  padding: 0%;
+}
+
+
+.g1-header {
+  display: flex;
+  width: 100%;
+  /* justify-content: center; */
+  padding-bottom: 0;
+  padding-top: 10px
+  
+}
+
+.g1-h1 {
+  font-family: 'Poppins';
+  color: var(--blue);
+  padding-left: 4rem;
+  padding-top:6rem;
+  padding-bottom: 1.5rem;
+  font-size: 3rem;
+  justify-content: left;
+}
+
+.g1-form{
+  width: 70%;
+}
+
+.g1-label {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.g1-input1 {
+  border: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--blue);
+}
+
+.g1-input2 {
+  border: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--blue);
+}
+
+.g1-button {
+  font-size: 1.25rem;
+  background-color: var(--blue);
+  border-radius: 6px;
+  border: 0;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  color: var(--white);
+}
+
+.img-div{
+  width: 100%;
+}
+
+.g1-img{
+  padding-right: 3rem;
+  width: 100%;
+  height: 100%;
 }

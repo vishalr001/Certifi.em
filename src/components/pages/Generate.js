@@ -121,11 +121,11 @@ function Generate() {
       {/* Generate Certificate */}
 
       <div className="g-container">
-        <header>
-          <h1>Generate Certificate</h1>
+        <header className = "g-header">
+          <h1 className='g-h1'>Generate Certificate</h1>
         </header>
 
-        <section>
+        <section className='g-section'>
           <div>
             <Form formData={formData} setFormData={setFormData} />
             <button
@@ -156,22 +156,27 @@ function Generate() {
 
       {/* Upload certificate to IPFS and ethereum and Send mail to recipient */}
 
-      <div>
-        <section>
-          <form>
-            <h1>Upload and Send Certificate</h1>
+      <div className='g1-container'>
+        <header className = "g1-header">
+          <h1 className='g1-h1'>Upload and Send Certificate</h1>
+        </header>
+        <section className='g1-section'>
+          <form className='g1-form'>
             <div>
-              <label>Enter Downloaded Certificate</label>
-              <input type='file' onChange={fileToBuffer}></input>
+              <label className='g1-label'>Enter Downloaded Certificate</label>
+              <input className='g1-input1' type='file' onChange={fileToBuffer}></input>
             </div>
             <div>
-              <label>Enter Recipient Email</label>
-              <input type='email' placeholder='abc@gmail.com' autoComplete="off"></input>
+              <label className='g1-label'>Enter Recipient Email</label>
+              <input className='g1-input2' type='email' placeholder='abc@gmail.com' autoComplete="off"></input>
             </div>
-            <button type="button" onClick={uploadToIPFS}>
-              Send
+            <button className='g1-button' type="button" onClick={uploadToIPFS}>
+              Upload and Send
             </button>
           </form>
+          <div className='img-div'>
+          <img className='g1-img' src='/images/email.jpg' />
+          </div>
         </section>
       </div>
     </div>
