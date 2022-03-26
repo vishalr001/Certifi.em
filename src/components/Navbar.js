@@ -38,11 +38,11 @@ function Navbar() {
                 Verify
               </Link>
               </li>
-              <li class="nav-item">
+              {/* <li class="nav-item">
               <Link to='/download' className='nav-links'>
                 Download
               </Link>
-              </li>
+              </li> */}
             </ul>
             <form class="d-flex">
               <button class="btn btn-outline-success" type="submit">
