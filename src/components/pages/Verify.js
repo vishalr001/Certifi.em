@@ -3,9 +3,9 @@ import React from 'react';
 function Verify() {
   return(
     <div>
-      <p> 
+      <h1> 
         Verify Certificates
-      </p>
+      </h1>
     </div>
 
   );

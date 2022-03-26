@@ -4,9 +4,9 @@ import '../../App.css';
 function Download() {
   return(
     <div>
-      <h1 className='Download'>
+      <div className='Download'>
         Download Certificates
-      </h1>
+      </div>
     </div>
   );
 }

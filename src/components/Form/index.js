@@ -19,6 +19,7 @@ const Form = ({ formData, setFormData }) => {
           name="name"
           placeholder={formData.name === '' && 'Name Surname'}
           value={formData.name}
+          autoComplete="off"
           onChange={handleChange}
         />
       </div>
@@ -31,6 +32,7 @@ const Form = ({ formData, setFormData }) => {
             formData.course === '' && 'Creating Dapps using IPFS & Blockchain'
           }
           value={formData.course}
+          autoComplete="off"
           onChange={handleChange}
         />
       </div>

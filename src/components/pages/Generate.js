@@ -6,7 +6,10 @@ import { create } from 'ipfs-http-client'
 import 'minireset.css';
 import './Generate.css';
 import Form from '../Form';
-import Preview from '../Preview'
+import Preview from '../Preview';
+import { db } from '../../Firebase-config';
+import {collection, addDoc} from 'firebase/firestore';
+
 
 const ipfs = create({host: 'ipfs.infura.io', port: 5001, protocol: 'https'})
 
@@ -25,11 +28,13 @@ function Generate() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [certificate, setCertificate] = useState(null);
-  const id = uuid().slice(0,13);
+  const [certid, setCertId] = useState('');
+  const ID = uuid().slice(0,13);
 
   function generateCertificate(e) {
     e.preventDefault();
     setIsLoading(true)
+    setCertId(ID);
     const url = 'https://api.make.cm/make/t/fccae3e9-562a-4218-be98-85015a01a6c0/sync';
 
     //specifying headers for request to API
@@ -45,7 +50,7 @@ function Generate() {
       'data': {
         ...formData,
         date: new Date().toDateString().split(' ').slice(1).join(' '),
-        cert_id: id
+        cert_id: ID
       },
       'postProcessing': {
         optimize: true
@@ -58,6 +63,7 @@ function Generate() {
     .then((response) => {
       setIsLoading(false)
       setCertificate(response.data.resultUrl)
+      console.log("cert id:", ID);
     }, (error) => {
       console.log(error);
       setIsLoading(false)
@@ -69,7 +75,8 @@ function Generate() {
   // converting PDF file into buffer so we could add it in IPFS
 
   const [buffer, setBuffer] = useState(null);
-  const [pdfHash, setPDFHash] = useState('');
+  const [pdfHash, setPdfHash] = useState('');
+  let pdf_hash = '';
 
   function fileToBuffer(e){
     e.preventDefault();
@@ -79,19 +86,32 @@ function Generate() {
 
   // Upload PDF to ipfs and add certId and ipfs hash to firebase
 
-  async function uploadToIPFS(event) {
+  const uploadToIPFS = async (event) => {
     event.preventDefault();
     console.log("uploading to ipfs");
     try{
       const added = await ipfs.add(buffer);
-      console.log(added.path);
-      const pdfHash = added.path;
-      setPDFHash(pdfHash);
+      pdf_hash = added.path;
+      console.log("pdfhash:",pdf_hash)
+      addDataToCollection(event);
     }catch (error) {
       console.log("error in uploading files...", error);
     }
   };
 
+  //created ref of collection 'certificates'
+  const certificatesCollectionRef = collection(db, "certificates");
+
+  //function to add document in firebase collection
+  const addDataToCollection = async(event) =>{
+    event.preventDefault();
+    setPdfHash(pdf_hash)
+    console.log("adding data to firebase")
+    console.log("id:", certid);
+    console.log("hash:", pdf_hash);
+    await addDoc(certificatesCollectionRef, {cert_id: certid, cert_hash: pdf_hash});
+    
+  };
 
 
   return (
@@ -146,7 +166,7 @@ function Generate() {
             </div>
             <div>
               <label>Enter Recipient Email</label>
-              <input type='email' placeholder='abc@gmail.com'></input>
+              <input type='email' placeholder='abc@gmail.com' autoComplete="off"></input>
             </div>
             <button type="button" onClick={uploadToIPFS}>
               Send
