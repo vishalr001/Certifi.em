@@ -9,9 +9,10 @@ import Form from '../Form';
 import Preview from '../Preview';
 import { db } from '../../Firebase-config';
 import {collection, addDoc} from 'firebase/firestore';
-
+import emailjs, {init} from 'emailjs-com';
 
 const ipfs = create({host: 'ipfs.infura.io', port: 5001, protocol: 'https'})
+init("KlkCCtFWEtdFC_qBQ");
 
 function Generate() {
 
@@ -72,10 +73,15 @@ function Generate() {
 
 
 
-  // converting PDF file into buffer so we could add it in IPFS
+  // Addfile to IPFS
+  // Add data to collection
+  // Send email to recipient 
+
+
 
   const [buffer, setBuffer] = useState(null);
   const [pdfHash, setPdfHash] = useState('');
+  const [emailId, setEmailID] = useState('');
   let pdf_hash = '';
 
   function fileToBuffer(e){
@@ -94,6 +100,7 @@ function Generate() {
       pdf_hash = added.path;
       console.log("pdfhash:",pdf_hash)
       addDataToCollection(event);
+      sendEmail(event);
     }catch (error) {
       console.log("error in uploading files...", error);
     }
@@ -110,8 +117,26 @@ function Generate() {
     console.log("id:", certid);
     console.log("hash:", pdf_hash);
     await addDoc(certificatesCollectionRef, {cert_id: certid, cert_hash: pdf_hash});
-    
   };
+
+  // function to send email to recipient
+  const sendEmail = async(event) => {
+    event.preventDefault();
+    console.log("templete prams:", certid, emailId, );
+    emailjs.send("service_3v3z85e","template_m9wviar",{
+      url: `https://ipfs.infura.io/ipfs/${pdf_hash}`,
+      cert_id: certid,
+      send_to: emailId,
+    }, "KlkCCtFWEtdFC_qBQ")
+    .then((result) =>{
+      alert("Email has been sent to recipent!", result.text);
+
+    }, (error) => {
+      alert("Error, try again!", error.text);
+    });
+
+    
+  }
 
 
   return (
@@ -168,7 +193,8 @@ function Generate() {
             </div>
             <div>
               <label className='g1-label'>Enter Recipient Email</label>
-              <input className='g1-input2' type='email' placeholder='abc@gmail.com' autoComplete="off"></input>
+              <input className='g1-input2' placeholder='abc@gmail.com' autoComplete="off" onChange={(event) =>{setEmailID(event.target.value)}}>
+              </input>
             </div>
             <button className='g1-button' type="button" onClick={uploadToIPFS}>
               Upload and Send

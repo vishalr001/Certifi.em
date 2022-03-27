@@ -30,7 +30,7 @@ function Verify() {
   return (
     <div className="App">
       <div className="v-container">
-        <h1 className='v-h1'>Verify Certificates</h1>
+        <h1 className='v-h1'>Verify and Download Certificates</h1>
 
         <section>
           <form>
