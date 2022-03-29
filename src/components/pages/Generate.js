@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import { create } from 'ipfs-http-client'
@@ -9,18 +9,16 @@ import Form from '../Form';
 import Preview from '../Preview';
 import { db } from '../../Firebase-config';
 import {collection, addDoc} from 'firebase/firestore';
-import emailjs, {init} from 'emailjs-com';
+import emailjs from 'emailjs-com';
+import { storePdfHash } from '../../Web3Client';
 
 const ipfs = create({host: 'ipfs.infura.io', port: 5001, protocol: 'https'})
-init("KlkCCtFWEtdFC_qBQ");
+// init("KlkCCtFWEtdFC_qBQ");
 
 function Generate() {
 
 
-
-
   // Handling form data and specifying Post request to for certificate generation 
-
 
 
   const [formData, setFormData] = useState({
@@ -99,6 +97,7 @@ function Generate() {
       const added = await ipfs.add(buffer);
       pdf_hash = added.path;
       console.log("pdfhash:",pdf_hash)
+      storePdfHash(pdf_hash);
       addDataToCollection(event);
       sendEmail(event);
     }catch (error) {
