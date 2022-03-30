@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import Home from './components/pages/Home';
 import Generate from './components/pages/Generate';
 import Verify from './components/pages/Verify';
-import Download from './components/pages/Download';
 
 
 function App() {

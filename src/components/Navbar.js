@@ -8,7 +8,7 @@ function Navbar() {
       <nav className="navbar navbar-expand-lg">
         <div className="container">
           <a className="navbar-brand" href="#">
-           Certifi.em
+           CERTIFI.EM
           </a>
           <button
             className="navbar-toggler"
@@ -25,17 +25,17 @@ function Navbar() {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
               <Link to='/' className='nav-links'>
-                Home
+                HOME
               </Link>
               </li>
               <li className="nav-item">
               <Link to='/generate' className='nav-links'>
-                Generate
+                GENERATE
               </Link>
               </li>
               <li className="nav-item">
               <Link to='/verify' className='nav-links'>
-                Verify
+                VERIFY
               </Link>
               </li>
               {/* <li class="nav-item">
@@ -44,11 +44,11 @@ function Navbar() {
               </Link>
               </li> */}
             </ul>
-            <form className="d-flex">
+            {/* <form className="d-flex">
               <button className="btn btn-outline-success" type="submit">
                 Login
               </button>
-            </form>
+            </form> */}
           </div>
         </div>
       </nav>
