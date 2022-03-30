@@ -1,6 +1,7 @@
 
 .navbar {
-  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+  /* background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%); */
+  background-color: #0261cc;
   height: 60px;
   display: flex;
   justify-content: center;
@@ -29,17 +30,22 @@
   align-items: center;
 }
 
-/* .navbar-brand:hover{
-  color: aquamarine;
-} */
+.navbar-brand:hover{
+  color: black;
+}
 
 .nav-item {
-  margin-right: 10px;
+  margin-right: 2rem;
 }
 
 .nav-links {
   color: white;
   text-decoration: none;
+}
+
+.nav-links:hover {
+  color: black;
+  text-decoration:underline;
 }
 
 .navbar-nav{
@@ -50,5 +56,14 @@
   text-align: center;
   width: 60vw;
   justify-content: end;
-  margin-right: 2rem;
+  margin-right: 1rem;
+}
+
+.d-flex{
+  padding-right: 15px;
+}
+
+.btn{
+  color: #fff;
+  font-size: 1rem;
 }

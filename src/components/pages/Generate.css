@@ -32,7 +32,6 @@ body {
   width: 100%;
   /* justify-content: center; */
   padding-bottom: 0;
-  padding-top: 10px
   
 }
 
@@ -51,12 +50,6 @@ body {
   height: 100vh;
   margin: 0 auto;
   padding: 0%;
-}
-
-@media (min-width: 1024px) {
-  .container {
-    width: 1024px;
-  }
 }
 
 .g-section {
@@ -104,7 +97,6 @@ button:disabled {
   padding: 0%;
 }
 
-
 .g1-header {
   display: flex;
   width: 100%;
@@ -124,8 +116,16 @@ button:disabled {
   justify-content: left;
 }
 
+.g1-section {
+  width: 95%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding-left: 4rem;
+}
+
 .g1-form{
   width: 70%;
+  margin: 0%;
 }
 
 .g1-label {

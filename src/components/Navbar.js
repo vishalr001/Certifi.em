@@ -5,13 +5,13 @@ import './Navbar.css';
 function Navbar() {
   return (
     <>
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <a class="navbar-brand" href="#">
-            certifi.em
+      <nav className="navbar navbar-expand-lg">
+        <div className="container">
+          <a className="navbar-brand" href="#">
+           Certifi.em
           </a>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -21,19 +21,19 @@ function Navbar() {
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li className="nav-item">
               <Link to='/' className='nav-links'>
                 Home
               </Link>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
               <Link to='/generate' className='nav-links'>
                 Generate
               </Link>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
               <Link to='/verify' className='nav-links'>
                 Verify
               </Link>
@@ -44,8 +44,8 @@ function Navbar() {
               </Link>
               </li> */}
             </ul>
-            <form class="d-flex">
-              <button class="btn btn-outline-success" type="submit">
+            <form className="d-flex">
+              <button className="btn btn-outline-success" type="submit">
                 Login
               </button>
             </form>

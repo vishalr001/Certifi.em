@@ -2,7 +2,7 @@ import React from 'react';
 import './Verify.css';
 import { useState } from 'react';
 import { db } from '../../Firebase-config';
-import {collection, getDocs, addDoc, query, where} from 'firebase/firestore';
+import {collection, getDocs, query, where} from 'firebase/firestore';
 
 function Verify() {
 
@@ -28,33 +28,35 @@ function Verify() {
 
 
   return (
-    <div className="App">
+    <div className="Verify App">
       <div className="v-container">
-        <h1 className='v-h1'>Verify and Download Certificates</h1>
+        <header className='v-header'>
+          <h1 className="v-h1">Verify Certificates</h1>
+        </header>
 
-        <section>
-          <form>
-            <input
-              placeholder="Enter Certificate ID"
-              autoComplete="off"
-              onChange={(event) => setSearchId(event.target.value)}
-            ></input>
-            <button type="button" onClick={getCertHash}>
-              {" "}
-              Verify{" "}
-            </button>
-          </form>
-          {srcResult &&
-            <header>
-              <h2 class= 'certified'>Certified</h2>
-            </header> 
-          }
+        <section className="v-section">
+          <input
+            className="v-input"
+            placeholder="Enter Certificate ID"
+            autoComplete="off"
+            onChange={(event) => setSearchId(event.target.value)}
+          ></input>
+          <button className='v-button' type="button" onClick={getCertHash}>
+            {" "}
+            Verify{" "}
+          </button>
           {srcResult && (
-            <a 
-              class='download' 
+            <div className="v-certified-div">
+              <h2 className="certified">Certificate is valid</h2>
+            </div>
+          )}
+          {srcResult && (
+            <a
+              className="v-download"
               target="_blank"
               rel="noreferrer"
-              href={`https://ipfs.infura.io/ipfs/${srcResult}`}>
+              href={`https://ipfs.infura.io/ipfs/${srcResult}`}
+            >
               View Certificate
             </a>
           )}

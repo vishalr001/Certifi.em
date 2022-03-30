@@ -13,70 +13,103 @@ body {
   font-size: 16px;
 }
 
-header {
+.v-container {
+  width: 100%;
+  height: 90vh;
+  margin: 0 auto;
+  padding: 0%;
+}
+
+.v-header {
   display: flex;
+  width: 100%;
   /* justify-content: center; */
   padding-bottom: 0;
+  
 }
 
 .v-h1 {
   font-family: 'Poppins';
   color: var(--blue);
-  padding-left: 4rem;
-  padding-top: 2rem;
-  padding-bottom: 1.5rem;
+  padding-left: 2rem;
+  padding-top: 5rem;
+  padding-bottom: 2.5rem;
   font-size: 3rem;
-  justify-content: left;
+  justify-content: center;
+}
+
+.v-section {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding-left: 2rem;
+}
+
+.v-input {
+  border:0;
+  padding: 0;
+  display: block;
+  width: 100%;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--blue);
+}
+
+.v-input:focus {
+  outline: none;
+}
+
+.v-input::placeholder {
+  color: var(--light-blue);
+}
+
+.v-input:focus::placeholder,
+.v-input:active::placeholder {
+  color: var(--blue);
 }
 
 .certified {
   font-family: 'Poppins';
   color: green;
-  padding-left: 8.5rem;
+  padding-left: 0rem;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   font-size: 2.5rem;
-  justify-content: left;
-}
-
-.v-container {
-  width: 100%;
-  height: 100vh;
-  margin: 0 auto;
-  padding: 0%;
+  justify-content: center;
 }
 
 @media (min-width: 1024px) {
-  .container {
+  .v-container {
     width: 1024px;
   }
 }
 
-section {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  padding-left: 5rem;
-}
-
-button {
+.v-button {
   font-size: 1.25rem;
-  background-color: var(--blue);
+  background-color: var(--dark-blue);
   border-radius: 6px;
   border: 0;
   padding: 1rem 2rem;
   font-weight: bold;
   color: var(--white);
+  justify-content: center;
+  align-items: center;
 }
 
-button:disabled {
+.v-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
+.v-certified-div {
+  display: flex;
+  /* justify-content: center; */
+  padding-bottom: 0;
+}
 
 
-.download {
+
+.v-download {
   background-color: var(--dark-blue);
   color: white;
   font-size: 1.25rem;
