@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import { create } from 'ipfs-http-client'
@@ -10,7 +10,7 @@ import Preview from '../Preview';
 import { db } from '../../Firebase-config';
 import {collection, addDoc} from 'firebase/firestore';
 import emailjs from 'emailjs-com';
-import { storePdfHash } from '../../Web3Client';
+import { init, storePdfHash } from '../../Web3Client';
 
 const ipfs = create({host: 'ipfs.infura.io', port: 5001, protocol: 'https'})
 // init("KlkCCtFWEtdFC_qBQ");
@@ -71,14 +71,15 @@ function Generate() {
 
 
 
-  // Addfile to IPFS
-  // Add data to collection
-  // Send email to recipient 
+  // addfile to IPFS
+  // add hash to blockchain
+  // add data to collection
+  // send email to recipient 
 
 
 
   const [buffer, setBuffer] = useState(null);
-  const [pdfHash, setPdfHash] = useState('');
+  const [pdfHash, setPdfHash] = useState('QmZa3wgJrkb6phdL6H1FZJgbVH9c5LcH755LFw3ppYUtrn');
   const [emailId, setEmailID] = useState('');
   let pdf_hash = '';
 
@@ -88,17 +89,21 @@ function Generate() {
     setBuffer(file)
   }
 
-  // Upload PDF to ipfs and add certId and ipfs hash to firebase
-
+  // Upload PDF to ipfs
   const uploadToIPFS = async (event) => {
     event.preventDefault();
+    //
+    init();
     console.log("uploading to ipfs");
     try{
       const added = await ipfs.add(buffer);
       pdf_hash = added.path;
       console.log("pdfhash:",pdf_hash)
+      //calling StorePdfHash imported from Web3Client.js
       storePdfHash(pdf_hash);
+      //calling function to add certId and ipfs hash to Certificates Collection
       addDataToCollection(event);
+      //calling sendEmail to send mail through api call
       sendEmail(event);
     }catch (error) {
       console.log("error in uploading files...", error);
@@ -108,11 +113,11 @@ function Generate() {
   //created ref of collection 'certificates'
   const certificatesCollectionRef = collection(db, "certificates");
 
-  //function to add document in firebase collection
+  //function to add document in Certificates collection
   const addDataToCollection = async(event) =>{
     event.preventDefault();
     setPdfHash(pdf_hash)
-    console.log("adding data to firebase")
+    console.log("adding data to Collection")
     console.log("id:", certid);
     console.log("hash:", pdf_hash);
     await addDoc(certificatesCollectionRef, {cert_id: certid, cert_hash: pdf_hash});

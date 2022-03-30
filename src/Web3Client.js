@@ -29,51 +29,47 @@ export const init = async() => {
 
 	const StoreHashABI = [
     {
-      constant: false,
-      inputs: [
-        {
-          name: "x",
-          type: "string",
-        },
-      ],
-      name: "sendHash",
-      outputs: [],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      constant: true,
-      inputs: [],
-      name: "getHash",
-      outputs: [
-        {
-          name: "x",
-          type: "string",
-        },
-      ],
-      payable: false,
-      stateMutability: "view",
-      type: "function",
-    },
+			"constant": true,
+			"inputs": [],
+			"name": "getHash",
+			"outputs": [
+				{
+					"name": "x",
+					"type": "string"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "x",
+					"type": "string"
+				}
+			],
+			"name": "sendHash",
+			"outputs": [],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		}
   ];
 
 		contract= new web3.eth.Contract(
 			StoreHashABI,
-			// Dai contract on Rinkeby
-			'0x72098A223239DEe1cd9F13094e7303E50D24406a'
+
+			'0x1aD5F69C09FD97CcDF4C21c72DB8b362765d4553'
 		);
 
 		isInitialized = true;
 };
 
 export const storePdfHash = async (pdfHash) => {
-	if (!isInitialized) {
-		await init();
-	}
-	await contract.methods
-		.sendHash(pdfHash)
-		.send({ from: selectedAccount }).then((response) => {console.log("pdf hash stored in Blockchain", response)}).catch((err) => {console.log(err)});
+  
+	await contract.methods.sendHash(pdfHash).send({ from: selectedAccount }).then((response) => {console.log("pdf hash stored in Blockchain", response)}).catch((err) => {console.log(err)});
 };
 
 
