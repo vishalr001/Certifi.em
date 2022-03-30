@@ -10,20 +10,28 @@ function Verify() {
 
   const [searchId, setSearchId] = useState("");
   const [srcResult, setSrcResult] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const getCertHash = async() => {
-    const q = query(certificatesCollectionRef, where('cert_id', '==', searchId ));
-    const queryData = await getDocs(q);
-    const matchedData = queryData.size;
-    if(matchedData){
-      queryData.forEach((doc) => {
-        console.log(doc.data().cert_hash);
-        setSrcResult(doc.data().cert_hash);
-      })
+    setLoading(true);
+    setSrcResult("");
+    if(searchId){
+      const q = query(certificatesCollectionRef, where('cert_id', '==', searchId ));
+      const queryData = await getDocs(q);
+      const matchedData = queryData.size;
+      if(matchedData){
+        queryData.forEach((doc) => {
+          console.log(doc.data().cert_hash);
+          setSrcResult(doc.data().cert_hash);
+        })
+      }
+      else{
+        alert("No such Certificate with ID exists");
+      }
+    }else{
+      alert("Enter Certificate ID");
     }
-    else{
-      alert("No such Certificate with ID exists");
-    }
+    setLoading(false);
   };
 
 
@@ -41,7 +49,8 @@ function Verify() {
             autoComplete="off"
             onChange={(event) => setSearchId(event.target.value)}
           ></input>
-          <button className='v-button' type="button" onClick={getCertHash}>
+          <button disabled ={loading} className='v-button' type="button" 
+            onClick={getCertHash}>
             {" "}
             Verify{" "}
           </button>
