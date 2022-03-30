@@ -13,7 +13,6 @@ import emailjs from 'emailjs-com';
 import { init, storePdfHash } from '../../Web3Client';
 
 const ipfs = create({host: 'ipfs.infura.io', port: 5001, protocol: 'https'})
-// init("KlkCCtFWEtdFC_qBQ");
 
 function Generate() {
 
@@ -92,7 +91,8 @@ function Generate() {
   // Upload PDF to ipfs
   const uploadToIPFS = async (event) => {
     event.preventDefault();
-    //
+    setIsLoading(true);
+    // loading connected account
     init();
     console.log("uploading to ipfs");
     try{
@@ -134,7 +134,7 @@ function Generate() {
     }, "KlkCCtFWEtdFC_qBQ")
     .then((result) =>{
       alert("Email has been sent to recipent!", result.text);
-
+      setIsLoading(false);
     }, (error) => {
       alert("Error, try again!", error.text);
     });
@@ -200,7 +200,8 @@ function Generate() {
               <input className='g1-input2' placeholder='abc@gmail.com' autoComplete="off" onChange={(event) =>{setEmailID(event.target.value)}}>
               </input>
             </div>
-            <button className='g1-button' type="button" onClick={uploadToIPFS}>
+            <button disabled={isLoading} className='g1-button' type="button" 
+              onClick={uploadToIPFS}>
               Upload and Send
             </button>
           </form>
